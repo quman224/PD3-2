@@ -1,0 +1,19 @@
+$info = Get-MpComputerStatus
+
+$punkti = 100
+
+if ($info.RealTimeProtectionEnabled -eq $false) { 
+    $punkti = $punti - 50 
+}
+
+if ($info.AntivirusSignature -gt 3) { 
+    $punkti = $punkti - 20
+}
+
+if ($info.QuickScanAge -gt 7) {
+    $punkti = $punkti - 20
+}
+
+Write-host "Sistemas drosibas reitings: $punkti / 100"
+
+
