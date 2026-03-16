@@ -1,0 +1,14 @@
+$laiks = (Get-Date).AddDays(-3)
+
+$brīdinājumi = Get-WinEvent -LogName Application |
+Where-Object { $_.LevelDisplayName -eq "Warning" -and $_.TimeCreated -gt $laiks }
+
+$brīdinājumi | Out-File "$env:USERPROFILE\Documents\Warnings.txt"
+
+"Top 3 avoti:" | Out-File "$env:USERPROFILE\Documents\Warnings.txt" -Append
+
+$brīdinājumi |
+Group-Object ProviderName |
+Sort-Object Count -Descending |
+Select-Object -First 3 |
+Out-File "$env:USERPROFILE\Documents\Warnings.txt" -Append
