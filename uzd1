@@ -1,6 +1,8 @@
-procesi = Get-Process | Where-Object {
-    $_.WorkingSet -gt 150MB -and $_.Name -ne "msedge"
-}
+$procesi = Get-Process | 
 
-$procesi | Select-Object Name, Id, WorkingSet |
-Export-Csv "$env:USERPROFILE\Documens\LielieProcesi.csv"
+Where-Object {  $_.WorkingSet64 -gt 150MB -and $_.Name -ne "msedge" }
+
+
+$procesi |
+Select-Object Name, Id, WorkingSet64 |
+Export-Csv "$env:USERPROFILE\Documents\LielieProcesi.csv"
