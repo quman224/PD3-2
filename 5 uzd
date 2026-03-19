@@ -1,7 +1,0 @@
-$laiks = (Get-Date).AddHours(-48)
-
-$pdf = Get-ChildItem "$env:USERPROFILE\Downloads\*.pdf" | Where-Object {
-    $_.LastWriteTime -gt $laiks
-}
-
-Compress-Archive $pdf.FullName "$env:USERPROFILE\Documents\PDF_Backup.zip" -Force
