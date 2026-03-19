@@ -1,0 +1,13 @@
+$fails = "$env:USERPROFILE\Documents\Warnings.txt"
+
+$dati = Get-EventLog Application -EntryType Warning -After (Get-Date).AddDays(-3)
+
+if (Test-Path $fails) { Remove-Item $fails }
+
+$dati | Out-File $fails
+
+Add-Content $fails "`nTOP 3 avoti:"
+$dati | Group-Object Source | Sort-Object Count -Descending | Select-Object -First 3 |
+ForEach-Object {
+    Add-Content $fails "$($_.Name) - $($_.Count)"
+}
