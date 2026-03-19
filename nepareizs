@@ -1,4 +1,0 @@
-$laiks = (Get-Date).AddHours(-48)
-$pdf = Get-ChildItem "$env:USERPROFILE\Documents\Downloads\*.pdf" |
-	
-Compress-Archive $pdf.Full "$env:USERPROFILE\Documents\PDF_Backup.zip"
