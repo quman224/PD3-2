@@ -1,0 +1,5 @@
+$laiks = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+$spooler = Get-Service Spooler
+$update = Get-Service wuauserv
+Add-Content Servisi.log "[$laiks} Serviss Spooler ir$($spooler.Status)."
+Add-Content Servisi.log "[$laiks} Servisi wuauserv ir $($update.Status)."
